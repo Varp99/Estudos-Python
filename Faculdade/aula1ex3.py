@@ -3,12 +3,12 @@
 soma = 0
 contador = 0
 
-for c in range(0,501):
+for num in range(0,501):
     #Calcula os numeros impares usando o resto da divisão
-    if(c%2 == 1):
+    if(num%2 == 1):
         #Calcula quais numeros impares são multiplos de 3
-        if(c%3 == 0):
-            soma += c
+        if(num%3 == 0):
+            soma += num
             contador += 1
-            print(c)
+            print(num)
 print("A soma de todos os {} valores é {}".format(contador,soma))
