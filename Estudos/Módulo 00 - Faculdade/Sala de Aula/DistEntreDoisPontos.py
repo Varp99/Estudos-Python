@@ -9,4 +9,4 @@ yb = int(input("Insira o valor de YB: "))
 
 dist_AB = sqrt(((xb - xa)**2) + ((yb - ya)**2))
 
-print(dist_AB)
+print(int(dist_AB))

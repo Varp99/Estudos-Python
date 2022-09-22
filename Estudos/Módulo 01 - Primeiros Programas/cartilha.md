@@ -116,8 +116,14 @@ Quantidade vendida no Mês = 65.300 unidades
 O seu programa deve avisar (usaremos o print por enquanto) caso o produto tenha batido a meta do mês. Então devemos fazer:<br>
 - Caso o produto tenha batido a meta, devemos exibir a mensagem: "Batemos a meta de vendas de Iphone, vendemos {} unidades" 
 - Se ele não bateu a meta do mês, o seu programa não deve fazer nada
+```python
+meta = 50000
+qtde_vendida = 65300
 
+if qtde_vendida > meta:
+    print('Batemos a meta de vendas de Iphone, vendemos {} unidades'.format(qtde_vendida))
 
+```
 ### Tratando a condição falsa:
 Quando usamos o if, nem sempre queremos apenas analisar o caso verdadeiro, em boa parte das vezes queremos fazer alguma coisa caso a condição seja verdadeira e fazer outra coisa caso a condição seja falsa.
 
@@ -132,3 +138,12 @@ else:
 Voltando ao nosso Exemplo Real da Amazon e do Iphone, agora nossa programa deve avisar nos 2 casos:
 - Caso o produto tenha batido a meta, devemos exibir a mensagem: "Batemos a meta de vendas de Iphone, vendemos {} unidades" 
 - Se ele não bateu a meta do mês, devemos exibir a mensagem: "Infelizmente não batemos a meta, vendemos {} unidades. A meta era de {} unidades"
+```python
+meta = 50000
+qtde_vendida = 15000
+
+if qtde_vendida > meta:
+    print('Batemos a meta de vendas de Iphone, vendemos {} unidades'.format(qtde_vendida))
+else:
+    print('Infelizmente não batemos a meta, vendemos {} unidades. A meta era de {} unidades'.format(qtde_vendida, meta))
+```
