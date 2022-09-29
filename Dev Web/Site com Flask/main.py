@@ -1,3 +1,4 @@
+from crypt import methods
 from lib2to3.pgen2 import token
 from flask import Flask, render_template, url_for
 from forms import FormCriarConta, FormLogin
@@ -20,12 +21,12 @@ def contato():
 def usuarios():
     return render_template('usuarios.html', lista_usuarios = lista_usuarios) #Coloca a lista de usuarios como parâmetro aqui para poder chamar ela na página usuarios.html
 
-@app.route("/login")
+@app.route("/login", methods=['GET','POST']) #Toda página que tiver formulário tem que passar esse methods get e post.
 def login():
     form_login = FormLogin()
     return render_template('login.html', form_login = form_login)
 
-@app.route("/criarconta")
+@app.route("/criarconta", methods=['GET','POST'])#Toda página que tiver formulário tem que passar esse methods get e post.
 def criar_conta():
     form_criarconta = FormCriarConta()
     return render_template('criarconta.html', form_criarconta = form_criarconta)
