@@ -13,19 +13,67 @@
                 <fieldset>
                     <div class="form-group">
                         {{ form_criarconta.username.label(class="form-control-label") }}
-                        {{ form_criarconta.username(class="form-control") }}
+
+                        <!-- Verifica se o campo de usuario tem algum erro -->
+                        {% if form_criarconta.username.errors %}
+                            {{ form_criarconta.username(class="form-control is-invalid") }} <!-- Vai deixar a caixa vermelha -->
+                        <div class="invalid-feedback"> <!-- Vai exibir os erros -->
+                            {% for erro in form_criarconta.username.errors %}
+                                {{ erro }}
+                            {% endfor %}
+                        </div>
+                        {% else %} <!-- Caso o contrário ele exibe a caixa normalmente -->
+                            {{ form_criarconta.username(class="form-control") }}
+                        {% endif %}
+
                     </div>
                     <div class="form-group">
                         {{ form_criarconta.email.label(class="form-control-label") }}
-                        {{ form_criarconta.email(class="form-control") }}
+
+                        <!-- Verifica se o campo de email tem algum erro -->
+                        {% if form_criarconta.email.errors %}
+                            {{ form_criarconta.email(class="form-control is-invalid") }} <!-- Vai deixar a caixa vermelha -->
+                        <div class="invalid-feedback"> <!-- Vai exibir os erros -->
+                            {% for erro in form_criarconta.email.errors %}
+                                {{ erro }}
+                            {% endfor %}
+                        </div>
+                        {% else %} <!-- Caso o contrário ele exibe a caixa normalmente -->
+                            {{ form_criarconta.email(class="form-control") }}
+                        {% endif %}
+                
                     </div>
                     <div class="form-group">
                         {{ form_criarconta.senha.label(class="form-control-label") }}
-                        {{ form_criarconta.senha(class="form-control") }}
+
+                        <!-- Verifica se o campo de senha tem algum erro -->
+                        {% if form_criarconta.senha.errors %}
+                            {{ form_criarconta.senha(class="form-control is-invalid") }} <!-- Vai deixar a caixa vermelha -->
+                        <div class="invalid-feedback"> <!-- Vai exibir os erros -->
+                            {% for erro in form_criarconta.senha.errors %}
+                                {{ erro }}
+                            {% endfor %}
+                        </div>
+                        {% else %} <!-- Caso o contrário ele exibe a caixa normalmente -->
+                            {{ form_criarconta.senha(class="form-control") }}
+                        {% endif %}
+
                     </div>
                     <div class="form-group"> 
                         {{ form_criarconta.confirmacao.label(class="form-control-label") }}
-                        {{ form_criarconta.confirmacao(class="form-control") }}
+
+                        <!-- Verifica se o campo de confirmação de senha tem algum erro -->
+                        {% if form_criarconta.confirmacao.errors %}
+                            {{ form_criarconta.confirmacao(class="form-control is-invalid") }} <!-- Vai deixar a caixa vermelha -->
+                        <div class="invalid-feedback"> <!-- Vai exibir os erros -->
+                            {% for erro in form_criarconta.confirmacao.errors %}
+                                {{ erro }}
+                            {% endfor %}
+                        </div>
+                        {% else %} <!-- Caso o contrário ele exibe a caixa normalmente -->
+                            {{ form_criarconta.confirmacao(class="form-control") }}
+                        {% endif %}
+                        
                     </div> 
                 </fieldset>
                 {{ form_criarconta.botao_criar(class="btn btn-primary mt-4") }}

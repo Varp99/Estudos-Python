@@ -13,11 +13,35 @@
                 <fieldset> 
                     <div class="form-group">
                         {{ form_login.email.label(class="form-control-label") }} 
-                        {{ form_login.email(class="form-control") }}
+
+                        <!-- Verifica se o campo de e-mail tem algum erro -->
+                        {% if form_login.email.errors %}
+                            {{ form_login.email(class="form-control is-invalid") }} <!-- Vai deixar a caixa vermelha -->
+                        <div class="invalid-feedback"> <!-- Vai exibir os erros -->
+                            {% for erro in form_login.email.errors %}
+                                {{ erro }}
+                            {% endfor %}
+                        </div>
+                        {% else %} <!-- Caso o contrário ele exibe a caixa normalmente -->
+                            {{ form_login.email(class="form-control") }}
+                        {% endif %}
+
                     </div>
                     <div class="form-group">
                         {{ form_login.senha.label(class="form-control-label") }}  <!-- Essas classes entre parênteses serve pra deixar mais bonito -->
-                        {{ form_login.senha(class="form-control") }}
+
+                        <!-- Verifica se o campo de senha tem algum erro -->
+                        {% if form_login.senha.errors %}
+                            {{ form_login.senha(class="form-control is-invalid") }} <!-- Vai deixar a caixa vermelha -->
+                        <div class="invalid-feedback"> <!-- Vai exibir os erros -->
+                            {% for erro in form_login.senha.errors %}
+                                {{ erro }}
+                            {% endfor %}
+                        </div>
+                        {% else %} <!-- Caso o contrário ele exibe a caixa normalmente -->
+                            {{ form_login.senha(class="form-control") }}
+                        {% endif %}
+
                     </div> 
                     <div class="form-group"> 
                         {{ form_login.lembrar_dados.label(class="form-check-input-label") }}
