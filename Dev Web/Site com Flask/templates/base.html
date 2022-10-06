@@ -12,6 +12,19 @@
 <body>
     <!-- Puxa o menu -->
     {% include 'navbar.html' %}
+
+    <div class="container">
+        {% with mensagens = get_flashed_messages(with_categories=True) %} <!-- Vai pegar todas as mensagens -->
+            {% if mensagens %} <!-- Se tiver mensagens -->
+                {% for categoria, mensagem in mensagens %} <!-- Percorre a lista e coloca a mensagem e a categoria -->
+                    <div class="alert {{ categoria }}">
+                        {{ mensagem }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
     <!-- Deixa o conteúdo do corpo do site dinâmico, ele puxa essas informações das outras páginas -->
     {% block body %}
     {% endblock %}
