@@ -1,12 +1,20 @@
 from lib2to3.pgen2 import token
 from flask import Flask, render_template, url_for, request, flash, redirect
 from forms import FormCriarConta, FormLogin
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
 lista_usuarios = ['Lira','João']
+
 #Token de segurança para formulários
 app.config['SECRET_KEY'] = 'c094b01296fb687d2cd30a591d226ef9'
+#Caminho do banco de dados que o sql alchemy vai controlar
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///projeto.db'
+
+#Vai criar o banco de dados usando essa classe SQLAlchemy de acordo com as config do app
+database = SQLAlchemy(app)
+
 
 @app.route("/")  #Caminho da nossa página
 def home():
