@@ -1,4 +1,3 @@
-from lib2to3.pgen2 import token
 from flask import Flask, render_template, url_for, request, flash, redirect
 from forms import FormCriarConta, FormLogin
 from flask_sqlalchemy import SQLAlchemy
