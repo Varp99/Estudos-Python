@@ -1,6 +1,6 @@
-#Banco de dados
+#AQUI É ONDE CRIA TODA A TABELA DE BANCO DE DADOS
 
-from main import database #importando nosso database do arquivo main
+from comunidadeimpressionadora import database #importando nosso database do arquivo init presente dentro da pasta comunidadeimpressionadora
 from datetime import datetime #importar pra poder pegar a data do momento atual
 
 class Usuario(database.Model):

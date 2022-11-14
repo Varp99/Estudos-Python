@@ -1,4 +1,6 @@
+#AQUI É ONDE CRIA TODOS OS FORMULÁRIOS QUE IRÁ UTILIZAR
 # Importando os formulários, tipos de campos e validações de campos.
+
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
