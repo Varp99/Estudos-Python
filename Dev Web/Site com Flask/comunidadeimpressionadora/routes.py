@@ -1,8 +1,9 @@
 #AQUI É A PARTE ONDE CRIA TODAS AS FUNÇÕES DE PÁGINAS
 
 from flask import render_template, redirect, url_for, flash, request
-from comunidadeimpressionadora import app
+from comunidadeimpressionadora import app, database
 from comunidadeimpressionadora.forms import FormLogin, FormCriarConta
+from comunidadeimpressionadora.models import Usuario
 
 lista_usuarios = ['Lira','João']
 
@@ -35,6 +36,12 @@ def criar_conta():
     form_criarconta = FormCriarConta()
 
     if form_criarconta.validate_on_submit() and 'botao_criar' in request.form: #Verifica se o formulário foi validado e se o botão que eu cliquei foi o de criar conta
+        #Estamos criando um usuário no banco de dados
+        usuario = Usuario(username=form_criarconta.username.data, email=form_criarconta.email.data, senha=form_criarconta.senha.data)
+        #Estamos adicionando o usuário na sessão do banco de dados
+        database.session.add(usuario)
+        #Estamos dando um commit
+        database.session.commit()
         #Exibir mensagem
         flash(f'Conta criada com sucesso no e-mail: {form_criarconta.email.data}', 'alert-success')
         #Redireciona para tal página

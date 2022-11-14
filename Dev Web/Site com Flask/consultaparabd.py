@@ -1,9 +1,8 @@
-from turtle import pos
-from main import app, database
-from models import Usuario, Post
+from comunidadeimpressionadora import database
+from comunidadeimpressionadora import app   
 
 with app.app_context():
-    database.drop_all()
+    #database.drop_all()
     database.create_all()
 
 
@@ -12,6 +11,16 @@ with app.app_context():
  #   usuario = Usuario(username="Vini", email="vini.arpini@hotmail.com", senha="123456")
   #  database.session.add(usuario)
   #  database.session.commit()
+
+#Busca usuario metodo1
+#from comunidadeimpressionadora import app
+#from comunidadeimpressionadora import database
+#with app.app_context():
+    #Usuario.query.all()
+#with app.app_context():
+    #usuario = Usuario.query.first()
+#usuario.email
+#usuario.senha
 
 #Busca usuarios no banco de dados
 #with app.app_context():
