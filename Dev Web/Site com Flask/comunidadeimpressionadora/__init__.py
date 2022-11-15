@@ -1,6 +1,7 @@
 # ISSO AQUI TUDO FAZ PARTE DA CONFIGURAÇÃO DO SITE E INICIALIZA O SITE
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
 
@@ -11,5 +12,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///projeto.db'
 
 #Vai criar o banco de dados usando essa classe SQLAlchemy de acordo com as config do app
 database = SQLAlchemy(app)
+#Criptografia
+bcrypt = Bcrypt(app)
 
 from comunidadeimpressionadora import routes  #Tem que ser aqui embaixo essa importação pq ele precisa do app
