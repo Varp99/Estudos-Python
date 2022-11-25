@@ -47,7 +47,7 @@ print(lucro)
 
 """4. Qual foi a Margem da Loja? (Lembre-se, margem = Lucro / Faturamento). Não precisa formatar em percentual"""
 margem = lucro / (fat_coca + fat_pepsi)
-
+print(margem)
 
 """### Parte 2 - Inputs e Strings
 
