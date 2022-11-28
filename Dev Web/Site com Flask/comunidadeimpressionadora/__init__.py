@@ -2,6 +2,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
+from flask_login import LoginManager
 
 app = Flask(__name__)
 
@@ -14,5 +15,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///projeto.db'
 database = SQLAlchemy(app)
 #Criptografia
 bcrypt = Bcrypt(app)
+#Variavel do login manager
+login_manager = LoginManager(app)
 
 from comunidadeimpressionadora import routes  #Tem que ser aqui embaixo essa importação pq ele precisa do app

@@ -1,9 +1,15 @@
 #AQUI É ONDE CRIA TODA A TABELA DE BANCO DE DADOS
 
-from comunidadeimpressionadora import database #importando nosso database do arquivo init presente dentro da pasta comunidadeimpressionadora
+from comunidadeimpressionadora import database, login_manager #importando nosso database do arquivo init presente dentro da pasta comunidadeimpressionadora
 from datetime import datetime #importar pra poder pegar a data do momento atual
+from flask_login import UserMixin
 
-class Usuario(database.Model):
+#Função que encontra um usuário de acordo com o ID dele
+@login_manager.user_loader
+def load_usuario(id_usuario):
+    return Usuario.query.get(int(id_usuario))
+
+class Usuario(database.Model, UserMixin):
     id = database.Column(database.Integer, primary_key = True) #Coluna ID do tipo inteiro e chave primária
     username = database.Column(database.String, nullable = False) #Coluna de usuário do tipo String (texto) nenhum usuário consegue criar uma conta sem dizer o nome do usuário
     email = database.Column(database.String, nullable = False, unique = True) #Esse unique significa que nenhum usuário pode ter o mesmo email no banco de dados

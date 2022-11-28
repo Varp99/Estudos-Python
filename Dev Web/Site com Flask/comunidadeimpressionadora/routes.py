@@ -4,6 +4,7 @@ from flask import render_template, redirect, url_for, flash, request
 from comunidadeimpressionadora import app, database, bcrypt
 from comunidadeimpressionadora.forms import FormLogin, FormCriarConta
 from comunidadeimpressionadora.models import Usuario
+from flask_login import login_user
 
 lista_usuarios = ['Lira','João']
 
@@ -24,10 +25,20 @@ def login():
     form_login = FormLogin()
 
     if form_login.validate_on_submit() and 'botao_entrar' in request.form: #Verifica se o formulário foi validado e se o botão que eu cliquei foi o de login
-        #Exibir mensagem
-        flash(f'Login feito com sucesso no e-mail: {form_login.email.data}', 'alert-success')
-        #Redireciona para tal página
-        return redirect(url_for('home'))
+        #encontra o usuario
+        usuario = Usuario.query.filter_by(email=form_login.email.data).first()
+        #Se o usuario existe e a senha do banco de dados é a mesma que ele preencheu no formulário então funciona o login
+        if usuario and bcrypt.check_password_hash(usuario.senha, form_login.senha.data):
+            #Faz o login efetivamente
+            login_user(usuario, remember=form_login.lembrar_dados.data)
+            #Exibe mensagem de sucesso
+            flash(f'Login feito com sucesso no e-mail: {form_login.email.data}', 'alert-success')
+            #Redireciona para tal página
+            return redirect(url_for('home'))
+        else:
+            #Exibe mensagem de erro
+            flash(f'Falha no Login. E-mail ou Senha incorretos', 'alert-danger')
+        
     
     return render_template('login.html', form_login = form_login)
 
