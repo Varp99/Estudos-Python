@@ -34,8 +34,13 @@ def login():
             login_user(usuario, remember=form_login.lembrar_dados.data)
             #Exibe mensagem de sucesso
             flash(f'Login feito com sucesso no e-mail: {form_login.email.data}', 'alert-success')
-            #Redireciona para tal página
-            return redirect(url_for('home'))
+            #Pega o parâmetro next e verifica se ele existe, para redirecionar pra página que o usuário queria ir
+            par_next = request.args.get('next')
+            if par_next:
+                return redirect(par_next)
+            else:
+                #Redireciona para tal página
+                return redirect(url_for('home'))
         else:
             #Exibe mensagem de erro
             flash(f'Falha no Login. E-mail ou Senha incorretos', 'alert-danger')
