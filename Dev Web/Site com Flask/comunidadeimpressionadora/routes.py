@@ -4,7 +4,7 @@ from flask import render_template, redirect, url_for, flash, request
 from comunidadeimpressionadora import app, database, bcrypt
 from comunidadeimpressionadora.forms import FormLogin, FormCriarConta
 from comunidadeimpressionadora.models import Usuario
-from flask_login import login_user, logout_user, current_user
+from flask_login import login_user, logout_user, current_user, login_required
 
 lista_usuarios = ['Lira','João']
 
@@ -17,6 +17,7 @@ def contato():
     return render_template('contato.html')
 
 @app.route("/usuarios")
+@login_required
 def usuarios():
     return render_template('usuarios.html', lista_usuarios = lista_usuarios) #Coloca a lista de usuarios como parâmetro aqui para poder chamar ela na página usuarios.html
 
@@ -64,15 +65,19 @@ def criar_conta():
 
 #Faz o logout e redireciona pra home
 @app.route('/sair')
+@login_required
 def sair():
     logout_user()
     flash(f'Logout feito com sucesso!!', 'alert-success')
     return redirect(url_for('home'))
 
 @app.route('/perfil')
+#Esse login required serve para bloquear a página pra pessoa, ou seja ela só consegue ver se estiver logada
+@login_required
 def perfil():
     return render_template('perfil.html')
 
 @app.route('/post/criar')
+@login_required
 def criar_post():
     return render_template('criarpost.html')

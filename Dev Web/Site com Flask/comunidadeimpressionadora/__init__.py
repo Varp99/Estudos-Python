@@ -17,5 +17,8 @@ database = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 #Variavel do login manager
 login_manager = LoginManager(app)
+login_manager.login_view = 'login'
+login_manager.login_message = 'Por favor, faça login para acessar essa página.'
+login_manager.login_message_category = 'alert-info'
 
 from comunidadeimpressionadora import routes  #Tem que ser aqui embaixo essa importação pq ele precisa do app
