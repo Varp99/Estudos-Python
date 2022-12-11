@@ -3,52 +3,52 @@
 <!-- Dentro desse bloco é onde define oq vai ser exibido no corpo dessa página -->
 {% block body %}
 
-<div class="container">
-    <h1>Faça Login Abaixo</h1>
-    <div class="row">
-        <div class="col">
-            <form method="POST" action="" class="border p-4 mt-2"> <!-- Borda / Padding4 / Margin top 2 -->
+<div class="fundo">
+    <div class="caixa">
+        <div class="login">
+            <h2>Login</h2>
+            <form method="POST" action="" class="campoinput">
                 {{ form_login.csrf_token }}
-                <legend>LOGIN</legend>
-                <fieldset> 
-                    <div class="form-group">
+                <fieldset>
+                    <div class="campoform">
                         {{ form_login.email.label(class="form-control-label") }} 
-
-                        <!-- Verifica se o campo de e-mail tem algum erro -->
-                        {% if form_login.email.errors %}
-                            {{ form_login.email(class="form-control is-invalid") }} <!-- Vai deixar a caixa vermelha -->
-                        <div class="invalid-feedback"> <!-- Vai exibir os erros -->
-                            {% for erro in form_login.email.errors %}
-                                {{ erro }}
-                            {% endfor %}
-                        </div>
-                        {% else %} <!-- Caso o contrário ele exibe a caixa normalmente -->
-                            {{ form_login.email(class="form-control") }}
-                        {% endif %}
-
+                            <i></i>
+                            <!-- Verifica se o campo de e-mail tem algum erro -->
+                            {% if form_login.email.errors %}
+                                {{ form_login.email(class="form-control is-invalid") }} <!-- Vai deixar a caixa vermelha -->
+                            <div class="invalid-feedback"> <!-- Vai exibir os erros -->
+                                {% for erro in form_login.email.errors %}
+                                    {{ erro }}
+                                {% endfor %}
+                            </div>
+                            {% else %} <!-- Caso o contrário ele exibe a caixa normalmente -->
+                                {{ form_login.email(class="form-control") }}
+                            {% endif %}
                     </div>
-                    <div class="form-group">
+                    <div class="campoform">
                         {{ form_login.senha.label(class="form-control-label") }}  <!-- Essas classes entre parênteses serve pra deixar mais bonito -->
-
-                        <!-- Verifica se o campo de senha tem algum erro -->
-                        {% if form_login.senha.errors %}
-                            {{ form_login.senha(class="form-control is-invalid") }} <!-- Vai deixar a caixa vermelha -->
-                        <div class="invalid-feedback"> <!-- Vai exibir os erros -->
-                            {% for erro in form_login.senha.errors %}
-                                {{ erro }}
-                            {% endfor %}
-                        </div>
-                        {% else %} <!-- Caso o contrário ele exibe a caixa normalmente -->
-                            {{ form_login.senha(class="form-control") }}
-                        {% endif %}
-
-                    </div> 
-                    <div class="form-group"> 
+                            <i></i>
+                            <!-- Verifica se o campo de senha tem algum erro -->
+                            {% if form_login.senha.errors %}
+                                {{ form_login.senha(class="form-control is-invalid") }} <!-- Vai deixar a caixa vermelha -->
+                            <div class="invalid-feedback"> <!-- Vai exibir os erros -->
+                                {% for erro in form_login.senha.errors %}
+                                    {{ erro }}
+                                {% endfor %}
+                            </div>
+                            {% else %} <!-- Caso o contrário ele exibe a caixa normalmente -->
+                                {{ form_login.senha(class="form-control") }}
+                            {% endif %}
+                    </div>  
+                    <div class="lembrar"> 
                         {{ form_login.lembrar_dados.label(class="form-check-input-label") }}
                         {{ form_login.lembrar_dados(class="form-check-input") }}
+                        <a href="#">Criar conta</a>
                     </div>  
                 </fieldset>
-                {{ form_login.botao_entrar(class="btn btn-primary mt-4") }}
+                <center>
+                {{ form_login.botao_entrar(class="btn btn-primary mt-4 btnlogin") }}
+                </center>
             </form>
         </div>
     </div>
