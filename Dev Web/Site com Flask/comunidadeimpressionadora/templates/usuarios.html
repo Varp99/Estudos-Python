@@ -3,11 +3,107 @@
 <!-- Dentro desse bloco é onde define oq vai ser exibido no corpo dessa página -->
 {% block body %}
 
+<div class="container">
     <h1>Usuários</h1>
     <!-- Percorre a lista de usuários definida na main e printa os usuários -->
     {% for usuario in lista_usuarios %}
-        <p>{{usuario}}</p>
+        
+        <section>
+            <div class="container py-5">
+            <div class="row">
+                <div class="col">
+                <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+                    <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item active" aria-current="page">Perfil do Usuário</li>
+                    </ol>
+                </nav>
+                </div>
+            </div>
+        
+            <div class="row">
+                <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                    <img src="{{ url_for('static', filename='fotos_perfil/{}'.format(usuario.foto_perfil)) }}" alt="avatar" class="rounded-circle img-fluid">
+                    <h5 class="my-3">{{ usuario.username }}</h5>
+                    <p class="text-muted mb-1">Full Stack Developer</p>
+                    <p class="text-muted mb-4">Alta Floresta, MT</p>
+                    <div class="d-flex justify-content-center mb-2">
+                        <button type="button" class="btn btn-primary">Seguir</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+        
+                <div class="col-lg-8">
+                <div class="card mb-4">
+                    <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                        <p class="mb-0">Nome Completo</p>
+                        </div>
+                        <div class="col-sm-9">
+                        <p class="text-muted mb-0">Vinicius Menezes Arpini</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                        <p class="mb-0">E-mail</p>
+                        </div>
+                        <div class="col-sm-9">
+                        <p class="text-muted mb-0">{{ usuario.email }}</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                        <p class="mb-0">Celular</p>
+                        </div>
+                        <div class="col-sm-9">
+                        <p class="text-muted mb-0">(098) 765-4321</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                        <p class="mb-0">Endereço</p>
+                        </div>
+                        <div class="col-sm-9">
+                        <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Cursos</p>
+                        </div>
+                        <div class="col-sm-9">
+                            {% if 'Não Informado' in usuario.cursos %}
+                            <p class="text-muted mb-0">0</p>
+                            {% else %}
+                            <p class="text-muted mb-0">{{ usuario.cursos.count(';') + 1 }}</p>
+                            {% endif %}
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="row justify-content-center">
+                    <div class="col col-4" style="text-align: center;">
+                        {% for curso in usuario.cursos.split (';') %}
+                        <button type="button" class="btn btn-success mt-2" disabled>{{ curso }}</button>
+                        {% endfor %}
+                    </div>
+                    </div>
+                </div>
+                </div>
+                </div>
+        </section>
     {% endfor %}
-    
+</div>
 
 {% endblock %}

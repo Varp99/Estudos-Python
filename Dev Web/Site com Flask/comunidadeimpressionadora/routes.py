@@ -9,8 +9,6 @@ import secrets
 import os
 from PIL import Image
 
-lista_usuarios = ['Lira','João']
-
 @app.route("/")  #Caminho da nossa página
 def home():
     return render_template('home.html') #Retorna e renderiza a página home que fica dentro da pasta templates
@@ -22,6 +20,7 @@ def contato():
 @app.route("/usuarios")
 @login_required
 def usuarios():
+    lista_usuarios = Usuario.query.all()
     return render_template('usuarios.html', lista_usuarios = lista_usuarios) #Coloca a lista de usuarios como parâmetro aqui para poder chamar ela na página usuarios.html
 
 @app.route("/login", methods=['GET','POST']) #Toda página que tiver formulário tem que passar esse methods get e post.
